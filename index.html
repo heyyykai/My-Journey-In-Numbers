@@ -16,9 +16,7 @@
   --accent: #58a6ff;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -27,27 +25,25 @@ body {
   color: var(--text);
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 
 .container {
   max-width: 900px;
   width: 100%;
-  padding: 40px 20px;
-  animation: fadeIn 1.2s ease forwards;
+  padding: 50px 20px;
+  animation: fadeIn 1s ease;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .subtitle {
   text-align: center;
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
 .grid {
@@ -59,24 +55,9 @@ h1 {
 .card {
   background: var(--card);
   border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  padding: 26px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.4);
   position: relative;
-  overflow: hidden;
-  animation: slideUp 0.8s ease forwards;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(88,166,255,0.15), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover::after {
-  opacity: 1;
 }
 
 .label {
@@ -85,13 +66,13 @@ h1 {
 }
 
 .value {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 600;
-  margin: 6px 0;
   color: var(--accent);
+  margin: 6px 0;
 }
 
-.desc {
+.meta {
   font-size: 14px;
   color: var(--muted);
 }
@@ -107,11 +88,6 @@ footer {
   from { opacity: 0 }
   to { opacity: 1 }
 }
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0 }
-  to { transform: translateY(0); opacity: 1 }
-}
 </style>
 </head>
 
@@ -119,38 +95,45 @@ footer {
 
 <div class="container">
   <h1>🌍 My Journey in Numbers</h1>
-  <p class="subtitle">Built slowly. Moved intentionally. Still evolving.</p>
+  <p class="subtitle">Built slowly. Moved intentionally.</p>
 
   <div class="grid">
+
+    <!-- Blogging -->
     <div class="card">
-      <div class="label">✍️ Blogging Since</div>
-      <div class="value" data-start="2015">0</div>
-      <div class="desc">Years of writing & publishing</div>
+      <div class="label">✍️ Blogging</div>
+      <div class="value" data-start="2016">0</div>
+      <div class="meta">Started blogging in 2016</div>
     </div>
 
+    <!-- YouTube -->
     <div class="card">
-      <div class="label">🎥 YouTube Since</div>
+      <div class="label">🎥 YouTube</div>
       <div class="value" data-start="2021">0</div>
-      <div class="desc">Years of travel storytelling</div>
+      <div class="meta">Started YouTube channel in 2021</div>
     </div>
 
+    <!-- Travel -->
     <div class="card">
-      <div class="label">✈️ Traveling Since</div>
+      <div class="label">✈️ Traveling</div>
       <div class="value" data-start="2014">0</div>
-      <div class="desc">Years exploring beyond borders</div>
+      <div class="meta">First international trip in 2014</div>
     </div>
 
+    <!-- Countries -->
     <div class="card">
       <div class="label">🌏 Countries Visited</div>
       <div class="value">7</div>
-      <div class="desc">All across Asia</div>
+      <div class="meta">All across Asia</div>
     </div>
 
+    <!-- Continents -->
     <div class="card">
       <div class="label">🧭 Continents Conquered</div>
       <div class="value">1</div>
-      <div class="desc">Depth over quantity</div>
+      <div class="meta">Depth over quantity</div>
     </div>
+
   </div>
 
   <footer>
@@ -159,11 +142,11 @@ footer {
 </div>
 
 <script>
-const currentYear = new Date().getFullYear();
+const year = new Date().getFullYear();
 
 document.querySelectorAll('[data-start]').forEach(el => {
   const start = parseInt(el.dataset.start);
-  const target = currentYear - start;
+  const target = year - start;
   let count = 0;
 
   const interval = setInterval(() => {
