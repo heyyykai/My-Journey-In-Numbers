@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Journey in Numbers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0f1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #9da7b3;
+  --accent: #58a6ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #0f1117, #0b0d12);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  padding: 40px 20px;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.8s ease forwards;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(88,166,255,0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.value {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 6px 0;
+  color: var(--accent);
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🌍 My Journey in Numbers</h1>
+  <p class="subtitle">Built slowly. Moved intentionally. Still evolving.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="label">✍️ Blogging Since</div>
+      <div class="value" data-start="2015">0</div>
+      <div class="desc">Years of writing & publishing</div>
+    </div>
+
+    <div class="card">
+      <div class="label">🎥 YouTube Since</div>
+      <div class="value" data-start="2021">0</div>
+      <div class="desc">Years of travel storytelling</div>
+    </div>
+
+    <div class="card">
+      <div class="label">✈️ Traveling Since</div>
+      <div class="value" data-start="2014">0</div>
+      <div class="desc">Years exploring beyond borders</div>
+    </div>
+
+    <div class="card">
+      <div class="label">🌏 Countries Visited</div>
+      <div class="value">7</div>
+      <div class="desc">All across Asia</div>
+    </div>
+
+    <div class="card">
+      <div class="label">🧭 Continents Conquered</div>
+      <div class="value">1</div>
+      <div class="desc">Depth over quantity</div>
+    </div>
+  </div>
+
+  <footer>
+    Still building. Still curious.
+  </footer>
+</div>
+
+<script>
+const currentYear = new Date().getFullYear();
+
+document.querySelectorAll('[data-start]').forEach(el => {
+  const start = parseInt(el.dataset.start);
+  const target = currentYear - start;
+  let count = 0;
+
+  const interval = setInterval(() => {
+    count++;
+    el.textContent = count;
+    if (count >= target) clearInterval(interval);
+  }, 40);
+});
+</script>
+
+</body>
+</html>
