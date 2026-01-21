@@ -27,11 +27,20 @@ body {
 }
 
 .container {
+  max-width: 700px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
-  max-width: 700px;
-  width: 100%;
 }
 
 .card {
@@ -59,47 +68,49 @@ body {
 
 <body>
 <div class="container">
+
   <h1>🌍 My Journey in Numbers</h1>
 
   <div class="grid">
-    
-  <!-- Blogging -->
-  <div class="card">
-    <div class="label">✍️ Started blogging in</div>
-    <div class="value" data-start="1991" data-end="2016">0</div>
-  </div>
 
-  <!-- YouTube -->
-  <div class="card">
-    <div class="label">🎥 Started YouTube in</div>
-    <div class="value" data-start="1991" data-end="2021">0</div>
-  </div>
+    <!-- Blogging -->
+    <div class="card">
+      <div class="label">✍️ Started blogging in</div>
+      <div class="value" data-start="1991" data-end="2016">0</div>
+    </div>
 
-  <!-- Traveling -->
-  <div class="card">
-    <div class="label">✈️ First international trip in</div>
-    <div class="value" data-start="1991" data-end="2014">0</div>
-  </div>
+    <!-- YouTube -->
+    <div class="card">
+      <div class="label">🎥 Started YouTube in</div>
+      <div class="value" data-start="1991" data-end="2021">0</div>
+    </div>
 
-  <!-- Countries -->
-  <div class="card">
-    <div class="label">🌏 Countries visited</div>
-    <div class="value" data-start="1" data-end="7">0</div>
-  </div>
+    <!-- Traveling -->
+    <div class="card">
+      <div class="label">✈️ First international trip in</div>
+      <div class="value" data-start="1991" data-end="2014">0</div>
+    </div>
 
-  <!-- Continents -->
-  <div class="card">
-    <div class="label">🧭 Continents conquered</div>
-    <div class="value" data-start="1" data-end="1">0</div>
-  </div>
+    <!-- Countries -->
+    <div class="card">
+      <div class="label">🌏 Countries visited</div>
+      <div class="value" data-start="1" data-end="7">0</div>
+    </div>
 
+    <!-- Continents -->
+    <div class="card">
+      <div class="label">🧭 Continents conquered</div>
+      <div class="value" data-start="1" data-end="1">0</div>
+    </div>
+
+  </div>
 </div>
 
 <script>
 function animateValue(el, start, end, duration) {
   let range = end - start;
   let current = start;
-  let increment = range / (duration / 20); // 20ms per frame
+  let increment = range / (duration / 20);
   let timer = setInterval(() => {
     current += increment;
     if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
@@ -113,8 +124,9 @@ function animateValue(el, start, end, duration) {
 document.querySelectorAll('.value').forEach(el => {
   const start = parseInt(el.dataset.start);
   const end = parseInt(el.dataset.end);
-  animateValue(el, start, end, 1200); // 1.2s animation
+  animateValue(el, start, end, 1200);
 });
 </script>
+
 </body>
 </html>
