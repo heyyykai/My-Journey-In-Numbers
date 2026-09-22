@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journey Stats</title>
+<title>My Journey in Numbers</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg: #0f1117;
@@ -14,95 +17,190 @@
   --muted: #9da7b3;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
+html,
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
-  display: flex;
-  justify-content: center;
   padding: 20px;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  max-width: 700px;
   width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 30px;
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .card {
+  min-width: 0;
   background: var(--card);
   border-radius: 16px;
-  padding: 16px;
+  padding: 16px 12px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .card .label {
   font-size: 14px;
+  line-height: 1.4;
   color: var(--muted);
   margin-bottom: 4px;
 }
 
 .card .value {
   font-size: 28px;
+  line-height: 1.2;
   font-weight: 600;
   color: var(--accent);
 }
 
+/* Tablet / smaller Notion embeds */
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    padding: 14px 10px;
+    border-radius: 14px;
+  }
+
+  .card .label {
+    font-size: 13px;
+  }
+
+  .card .value {
+    font-size: 25px;
+  }
+}
+
+/* Phone-sized Notion embeds */
+@media (max-width: 400px) {
+  body {
+    padding: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 21px;
+    margin-bottom: 16px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card .label {
+    font-size: 13px;
+  }
+
+  .card .value {
+    font-size: 24px;
+  }
+}
 </style>
+
 </head>
 
 <body>
+
 <div class="container">
 
-  <!-- Blogging -->
-  <div class="card">
-    <div class="label">✍️ Started blogging in</div>
-    <div class="value" data-start="1991" data-end="2016">0</div>
-  </div>
+  <h1>🌍 My Journey in Numbers</h1>
 
-  <!-- YouTube -->
-  <div class="card">
-    <div class="label">🎥 Started YouTube in</div>
-    <div class="value" data-start="1991" data-end="2021">0</div>
-  </div>
+  <div class="grid">
 
-  <!-- Traveling -->
-  <div class="card">
-    <div class="label">✈️ First international trip in</div>
-    <div class="value" data-start="1991" data-end="2014">0</div>
-  </div>
+```
+<!-- Blogging -->
+<div class="card">
+  <div class="label">✍️ Started blogging in</div>
+  <div class="value" data-start="1991" data-end="2016">0</div>
+</div>
 
-  <!-- Countries -->
-  <div class="card">
-    <div class="label">🌏 Countries visited</div>
-    <div class="value" data-start="1" data-end="14">0</div>
-  </div>
+<!-- YouTube -->
+<div class="card">
+  <div class="label">🎥 Started YouTube in</div>
+  <div class="value" data-start="1991" data-end="2021">0</div>
+</div>
 
-  <!-- Continents -->
-  <div class="card">
-    <div class="label">🧭 Continents conquered</div>
-    <div class="value" data-start="1" data-end="1">0</div>
-  </div>
+<!-- Traveling -->
+<div class="card">
+  <div class="label">✈️ First international trip in</div>
+  <div class="value" data-start="1991" data-end="2014">0</div>
+</div>
 
+<!-- Countries -->
+<div class="card">
+  <div class="label">🌏 Countries visited</div>
+  <div class="value" data-start="1" data-end="14">0</div>
+</div>
+
+<!-- Continents -->
+<div class="card">
+  <div class="label">🧭 Continents conquered</div>
+  <div class="value" data-start="1" data-end="1">0</div>
+</div>
+```
+
+  </div>
 </div>
 
 <script>
 function animateValue(el, start, end, duration) {
   let range = end - start;
   let current = start;
-  let increment = range / (duration / 20); // 20ms per frame
+  let increment = range / (duration / 20);
+
   let timer = setInterval(() => {
     current += increment;
-    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+
+    if (
+      (increment > 0 && current >= end) ||
+      (increment < 0 && current <= end)
+    ) {
       current = end;
       clearInterval(timer);
     }
+
     el.textContent = Math.floor(current);
   }, 20);
 }
@@ -110,8 +208,10 @@ function animateValue(el, start, end, duration) {
 document.querySelectorAll('.value').forEach(el => {
   const start = parseInt(el.dataset.start);
   const end = parseInt(el.dataset.end);
-  animateValue(el, start, end, 1200); // 1.2s animation
+
+  animateValue(el, start, end, 1200);
 });
 </script>
+
 </body>
 </html>
