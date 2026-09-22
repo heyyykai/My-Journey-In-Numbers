@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Journey in Numbers</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -20,171 +20,53 @@
   box-sizing: border-box;
 }
 
-html,
 body {
   margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-}
-
-body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
-
-/* MAIN CONTAINER */
 
 .container {
+  max-width: 700px;
   width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 18px 16px 20px;
 }
-
-/* TITLE */
 
 h1 {
   text-align: center;
-  font-size: 27px;
-  font-weight: 600;
-  margin: 0 0 22px;
-  line-height: 1.3;
+  margin-bottom: 30px;
+  font-size: 28px;
 }
-
-/* GRID */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
-
-/* CARDS */
 
 .card {
   background: var(--card);
-  border-radius: 15px;
-  padding: 17px 10px;
+  border-radius: 16px;
+  padding: 16px;
   text-align: center;
-  min-width: 0;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-}
-
-/* LABEL */
-
-.label {
-  font-size: 13px;
-  line-height: 1.45;
+.card .label {
+  font-size: 14px;
   color: var(--muted);
-  min-height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 4px;
 }
 
-/* NUMBER */
-
-.value {
-  font-size: 31px;
-  line-height: 1.1;
+.card .value {
+  font-size: 28px;
   font-weight: 600;
   color: var(--accent);
-  margin-top: 8px;
 }
 
-/* TABLET */
-
-@media (max-width: 600px) {
-
-  .container {
-    padding: 16px 12px 18px;
-  }
-
-  h1 {
-    font-size: 23px;
-    margin-bottom: 18px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 11px;
-  }
-
-  .card {
-    padding: 15px 8px;
-    border-radius: 13px;
-  }
-
-  .label {
-    font-size: 12px;
-    min-height: 34px;
-  }
-
-  .value {
-    font-size: 28px;
-    margin-top: 7px;
-  }
-}
-
-/* PHONE */
-
-@media (max-width: 390px) {
-
-  .container {
-    padding: 14px 9px 16px;
-  }
-
-  h1 {
-    font-size: 21px;
-    margin-bottom: 16px;
-  }
-
-  .grid {
-    gap: 9px;
-  }
-
-  .card {
-    padding: 13px 6px;
-    border-radius: 12px;
-  }
-
-  .label {
-    font-size: 11px;
-    min-height: 32px;
-  }
-
-  .value {
-    font-size: 26px;
-  }
-}
-
-/* VERY SMALL PHONES */
-
-@media (max-width: 320px) {
-
-  h1 {
-    font-size: 19px;
-  }
-
-  .label {
-    font-size: 10px;
-  }
-
-  .value {
-    font-size: 24px;
-  }
-}
 </style>
 </head>
 
@@ -196,101 +78,65 @@ h1 {
 
   <div class="grid">
 
-    <!-- BLOGGING -->
+    <!-- Blogging -->
     <div class="card">
       <div class="label">✍️ Started blogging in</div>
       <div class="value" data-start="1991" data-end="2016">0</div>
     </div>
 
-    <!-- YOUTUBE -->
+    <!-- YouTube -->
     <div class="card">
       <div class="label">🎥 Started YouTube in</div>
       <div class="value" data-start="1991" data-end="2021">0</div>
     </div>
 
-    <!-- TRAVEL -->
+    <!-- Traveling -->
     <div class="card">
       <div class="label">✈️ First international trip in</div>
       <div class="value" data-start="1991" data-end="2014">0</div>
     </div>
 
-    <!-- COUNTRIES -->
+    <!-- Countries -->
     <div class="card">
       <div class="label">🌏 Countries visited</div>
       <div class="value" data-start="1" data-end="14">0</div>
     </div>
 
-    <!-- CONTINENTS -->
+    <!-- Continents -->
     <div class="card">
       <div class="label">🧭 Continents conquered</div>
       <div class="value" data-start="1" data-end="1">0</div>
     </div>
 
   </div>
-
 </div>
 
 <script>
-function animateValue(element, start, end, duration) {
+function animateValue(el, start, end, duration) {
+  let range = end - start;
+  let current = start;
+  let increment = range / (duration / 20);
 
-  const startTime = performance.now();
+  let timer = setInterval(() => {
+    current += increment;
 
-  function update(currentTime) {
-
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    /* Smooth easing */
-    const easedProgress =
-      1 - Math.pow(1 - progress, 3);
-
-    const current =
-      Math.floor(start + (end - start) * easedProgress);
-
-    element.textContent = current;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      element.textContent = end;
+    if (
+      (increment > 0 && current >= end) ||
+      (increment < 0 && current <= end)
+    ) {
+      current = end;
+      clearInterval(timer);
     }
-  }
 
-  requestAnimationFrame(update);
+    el.textContent = Math.floor(current);
+  }, 20);
 }
 
+document.querySelectorAll('.value').forEach(el => {
+  const start = parseInt(el.dataset.start);
+  const end = parseInt(el.dataset.end);
 
-/* Start animations slightly after page loads */
-
-window.addEventListener('load', () => {
-
-  const counters = document.querySelectorAll('.value');
-
-  counters.forEach((element, index) => {
-
-    const start = parseInt(element.dataset.start);
-    const end = parseInt(element.dataset.end);
-
-    setTimeout(() => {
-
-      /* Continents still gets a tiny animation */
-      if (start === end) {
-        element.textContent = end;
-        element.style.opacity = "0";
-
-        setTimeout(() => {
-          element.style.transition = "opacity 0.5s ease";
-          element.style.opacity = "1";
-        }, 100);
-
-      } else {
-        animateValue(element, start, end, 1300);
-      }
-
-    }, index * 120);
-
-  });
-
+  animateValue(el, start, end, 1200);
 });
 </script>
 
