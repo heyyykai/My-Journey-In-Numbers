@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Journey in Numbers</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -26,154 +25,167 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-width: 0;
-  overflow-x: hidden;
+  min-height: 100%;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
-  padding: 20px;
+  overflow-x: hidden;
 }
+
+/* MAIN CONTAINER */
 
 .container {
   width: 100%;
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
+  padding: 18px 16px 20px;
 }
 
 /* TITLE */
 
 h1 {
   text-align: center;
-  margin: 0 0 30px;
-  font-size: 28px;
+  font-size: 27px;
+  font-weight: 600;
+  margin: 0 0 22px;
   line-height: 1.3;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
 /* CARDS */
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
 .card {
-  min-width: 0;
-  width: 100%;
   background: var(--card);
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 15px;
+  padding: 17px 10px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  min-width: 0;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.card .label {
-  font-size: 14px;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* LABEL */
+
+.label {
+  font-size: 13px;
+  line-height: 1.45;
   color: var(--muted);
-  margin-bottom: 4px;
-  line-height: 1.4;
-  overflow-wrap: break-word;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card .value {
-  font-size: 28px;
+/* NUMBER */
+
+.value {
+  font-size: 31px;
+  line-height: 1.1;
   font-weight: 600;
   color: var(--accent);
-  line-height: 1.2;
+  margin-top: 8px;
 }
 
-/* =========================================
-   TABLET / SMALLER NOTION EMBED
-   ========================================= */
+/* TABLET */
 
 @media (max-width: 600px) {
 
-  body {
-    padding: 16px;
+  .container {
+    padding: 16px 12px 18px;
   }
 
   h1 {
-    font-size: 24px;
-    margin-bottom: 22px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .card {
-    padding: 14px 10px;
-    border-radius: 14px;
-  }
-
-  .card .label {
-    font-size: 13px;
-  }
-
-  .card .value {
-    font-size: 25px;
-  }
-}
-
-/* =========================================
-   PHONE / VERY NARROW NOTION EMBED
-   ========================================= */
-
-@media (max-width: 420px) {
-
-  body {
-    padding: 12px;
-  }
-
-  h1 {
-    font-size: 21px;
+    font-size: 23px;
     margin-bottom: 18px;
   }
 
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
   }
 
   .card {
-    padding: 12px 7px;
-    border-radius: 12px;
+    padding: 15px 8px;
+    border-radius: 13px;
   }
 
-  .card .label {
+  .label {
     font-size: 12px;
-    line-height: 1.35;
+    min-height: 34px;
   }
 
-  .card .value {
-    font-size: 23px;
+  .value {
+    font-size: 28px;
+    margin-top: 7px;
   }
 }
 
-/* =========================================
-   VERY SMALL PHONES
-   ========================================= */
+/* PHONE */
 
-@media (max-width: 300px) {
+@media (max-width: 390px) {
+
+  .container {
+    padding: 14px 9px 16px;
+  }
+
+  h1 {
+    font-size: 21px;
+    margin-bottom: 16px;
+  }
 
   .grid {
-    grid-template-columns: 1fr;
+    gap: 9px;
   }
+
+  .card {
+    padding: 13px 6px;
+    border-radius: 12px;
+  }
+
+  .label {
+    font-size: 11px;
+    min-height: 32px;
+  }
+
+  .value {
+    font-size: 26px;
+  }
+}
+
+/* VERY SMALL PHONES */
+
+@media (max-width: 320px) {
 
   h1 {
     font-size: 19px;
   }
 
-  .card {
-    padding: 12px;
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 24px;
   }
 }
 </style>
-
 </head>
 
 <body>
@@ -184,79 +196,102 @@ h1 {
 
   <div class="grid">
 
-```
-<!-- Blogging -->
-<div class="card">
-  <div class="label">✍️ Started blogging in</div>
-  <div class="value" data-start="1991" data-end="2016">0</div>
-</div>
+    <!-- BLOGGING -->
+    <div class="card">
+      <div class="label">✍️ Started blogging in</div>
+      <div class="value" data-start="1991" data-end="2016">0</div>
+    </div>
 
-<!-- YouTube -->
-<div class="card">
-  <div class="label">🎥 Started YouTube in</div>
-  <div class="value" data-start="1991" data-end="2021">0</div>
-</div>
+    <!-- YOUTUBE -->
+    <div class="card">
+      <div class="label">🎥 Started YouTube in</div>
+      <div class="value" data-start="1991" data-end="2021">0</div>
+    </div>
 
-<!-- Traveling -->
-<div class="card">
-  <div class="label">✈️ First international trip in</div>
-  <div class="value" data-start="1991" data-end="2014">0</div>
-</div>
+    <!-- TRAVEL -->
+    <div class="card">
+      <div class="label">✈️ First international trip in</div>
+      <div class="value" data-start="1991" data-end="2014">0</div>
+    </div>
 
-<!-- Countries -->
-<div class="card">
-  <div class="label">🌏 Countries visited</div>
-  <div class="value" data-start="1" data-end="14">0</div>
-</div>
+    <!-- COUNTRIES -->
+    <div class="card">
+      <div class="label">🌏 Countries visited</div>
+      <div class="value" data-start="1" data-end="14">0</div>
+    </div>
 
-<!-- Continents -->
-<div class="card">
-  <div class="label">🧭 Continents conquered</div>
-  <div class="value" data-start="1" data-end="1">0</div>
-</div>
-```
+    <!-- CONTINENTS -->
+    <div class="card">
+      <div class="label">🧭 Continents conquered</div>
+      <div class="value" data-start="1" data-end="1">0</div>
+    </div>
 
   </div>
 
 </div>
 
 <script>
+function animateValue(element, start, end, duration) {
 
-function animateValue(el, start, end, duration) {
+  const startTime = performance.now();
 
-  let range = end - start;
-  let current = start;
-  let increment = range / (duration / 20);
+  function update(currentTime) {
 
-  let timer = setInterval(() => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
 
-    current += increment;
+    /* Smooth easing */
+    const easedProgress =
+      1 - Math.pow(1 - progress, 3);
 
-    if (
-      (increment > 0 && current >= end) ||
-      (increment < 0 && current <= end)
-    ) {
+    const current =
+      Math.floor(start + (end - start) * easedProgress);
 
-      current = end;
-      clearInterval(timer);
+    element.textContent = current;
 
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = end;
     }
+  }
 
-    el.textContent = Math.floor(current);
-
-  }, 20);
-
+  requestAnimationFrame(update);
 }
 
-document.querySelectorAll('.value').forEach(el => {
 
-  const start = parseInt(el.dataset.start);
-  const end = parseInt(el.dataset.end);
+/* Start animations slightly after page loads */
 
-  animateValue(el, start, end, 1200);
+window.addEventListener('load', () => {
+
+  const counters = document.querySelectorAll('.value');
+
+  counters.forEach((element, index) => {
+
+    const start = parseInt(element.dataset.start);
+    const end = parseInt(element.dataset.end);
+
+    setTimeout(() => {
+
+      /* Continents still gets a tiny animation */
+      if (start === end) {
+        element.textContent = end;
+        element.style.opacity = "0";
+
+        setTimeout(() => {
+          element.style.transition = "opacity 0.5s ease";
+          element.style.opacity = "1";
+        }, 100);
+
+      } else {
+        animateValue(element, start, end, 1300);
+      }
+
+    }, index * 120);
+
+  });
 
 });
-
 </script>
 
 </body>
